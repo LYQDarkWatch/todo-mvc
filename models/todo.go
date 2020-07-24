@@ -76,3 +76,9 @@ func CompleteAllTodos(userName string) bool {
 	fmt.Printf("%+v\n", changeInfo)
 	return true
 }
+
+// EditTodoContent 修改 todo 的内容
+func EditTodoContent() bool {
+
+	return true
+}
