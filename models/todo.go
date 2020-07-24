@@ -66,9 +66,13 @@ func DeleteTodosByUser(userName string) bool {
 
 // CompleteAllTodos 将当前所有 todo 设为已完成
 func CompleteAllTodos(userName string) bool {
-	err := CollectionTodo.Find(bson.M{"owner": userName})
+	selector := bson.M{"owner": userName, "completion": "false"}
+	data := bson.M{"$set": bson.M{"completion": "true"}}
+	changeInfo, err := CollectionTodo.UpdateAll(selector, data)
 	if err != nil {
+		fmt.Println(err)
 		return false
 	}
+	fmt.Printf("%+v\n", changeInfo)
 	return true
 }

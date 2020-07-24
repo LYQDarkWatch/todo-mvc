@@ -77,3 +77,18 @@ func DeleteTodoByOwner(c *gin.Context) {
 		"msg":  error.GetMsg(code),
 	})
 }
+
+// CompleteAllTodos 将所有 todos 状态变为完成
+func CompleteAllTodos(c *gin.Context) {
+	var code int
+	userName := Username
+	if models.CompleteAllTodos(userName) == false {
+		code = error.INVALID_PARAMS
+	} else {
+		code = error.SUCCESS
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": code,
+		"msg":  error.GetMsg(code),
+	})
+}

@@ -29,6 +29,8 @@ func InitRouter() *gin.Engine {
 		apiv1.DELETE("/todos", api.DeleteTodoByID)
 
 		apiv1.DELETE("/todos/batchDelete", api.DeleteTodoByOwner)
+
+		apiv1.PUT("/todos/complete", api.CompleteAllTodos)
 	}
 	return router
 }
